@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage("1. Git Checkout") {
+            steps {
+                git branch: 'main', url: 'https://github.com/Miko14/HelloWorld.git'
+            }
+        }
+    }
+}
