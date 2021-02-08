@@ -10,6 +10,11 @@ pipeline {
 		stage("1. Welcome") {
             steps {
                 echo "Welcome!"
+		script {
+                    echo "Groovy King!"
+                    def test = 2 + 2 > 4 ? "cool" : "not cool"
+                    echo test
+                }
             }
         }
     //     stage("2. Git Checkout") {
