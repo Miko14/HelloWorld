@@ -1,9 +1,36 @@
+currentBuild.displayName = "Custom Name #" + currentBuild.number
+
 pipeline {
     agent any
+    
+    tools {
+        maven 'Maven 3.6.3'
+    }
     stages {
-        stage("1. Git Checkout") {
+		stage("1. Welcome") {
             steps {
-                git branch: 'main', url: 'https://github.com/Miko14/HelloWorld.git'
+                echo "Welcome!"
+            }
+        }
+    //     stage("2. Git Checkout") {
+    //         steps {
+    //             echo "Git Checkout!"
+				// git branch: 'main', url: 'https://github.com/Miko14/HelloWorld'
+    //         }
+    //     }
+        stage("3. Maven Build -> Find Local Directory and Run Maven Package") {
+            steps {
+				dir('C:/Users/XXX_my_user_name/Desktop/SourceCode/Java/_other-github-projects/bootstrap-with-springboot'){
+                    bat "dir"
+                    bat "mvn clean package"
+                }
+            }
+        }
+        stage("4. Run Maven Tests") {
+            steps {
+				dir('C:/Users/XXX_my_user_name/Desktop/SourceCode/Java/_other-github-projects/bootstrap-with-springboot'){
+                    bat "mvn test"
+                }
             }
         }
     }
